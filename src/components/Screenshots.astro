@@ -1,0 +1,41 @@
+---
+import ImagePlaceholder from './ImagePlaceholder.astro';
+
+const screens = [
+  { label: 'Dashboard / agenda', hint: 'Vista principal del consultorio' },
+  { label: 'Lista de pacientes', hint: 'Modulo de gestion de pacientes' },
+  { label: 'Historia clinica', hint: 'Registro medico del paciente' },
+  { label: 'Receta PDF', hint: 'Vista previa o descarga de receta' },
+];
+---
+
+<section class="border-y border-slate-100 bg-white py-20 md:py-28">
+  <div class="mx-auto max-w-6xl px-6">
+    <div class="mx-auto max-w-2xl text-center">
+      <p class="text-sm font-semibold uppercase tracking-wide text-brand-600">Producto</p>
+      <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">
+        Vea MediApp en accion
+      </h2>
+      <p class="mt-4 text-lg text-slate-600">
+        Reemplace estos placeholders con capturas reales de la aplicacion para su demo comercial.
+      </p>
+    </div>
+
+    <div class="mt-14 grid gap-6 sm:grid-cols-2">
+      {
+        screens.map(({ label, hint }) => (
+          <ImagePlaceholder label={label} hint={hint} aspect="card" />
+        ))
+      }
+    </div>
+
+    <div class="mt-10 flex justify-center">
+      <ImagePlaceholder
+        label="Banner: medico usando MediApp en consultorio"
+        hint="Foto o ilustracion representativa del uso en contexto real"
+        aspect="wide"
+        class="max-w-4xl"
+      />
+    </div>
+  </div>
+</section>

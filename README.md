@@ -1,43 +1,66 @@
-# Astro Starter Kit: Minimal
+# MediApp Landing
 
-```sh
-npm create astro@latest -- --template minimal
+Landing page comercial del SaaS **MediApp**, construida con [Astro](https://astro.build) y Tailwind CSS.
+
+Dirigida a medicos independientes y consultorios privados.
+
+## Docker (produccion en VPS)
+
+La landing se sirve con **nginx** dentro del contenedor. **Caddy** (contenedor aparte en el VPS) gestiona SSL para `mediappec.com`.
+
+```bash
+cp .env.example .env
+docker compose --env-file .env up -d --build
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Guia completa: [`DEPLOY.md`](./DEPLOY.md). Bloque Caddy de ejemplo: [`proxy/caddy/Caddyfile.example`](./proxy/caddy/Caddyfile.example).
 
-## 🚀 Project Structure
+## Desarrollo
 
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```bash
+npm install
+npm run dev
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+Abra [http://localhost:4321](http://localhost:4321) en el navegador.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Con Laragon, puede servir el build estatico desde `dist/` o usar el servidor de desarrollo.
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Build para produccion
 
-## 🧞 Commands
+```bash
+npm run build
+npm run preview
+```
 
-All commands are run from the root of the project, from a terminal:
+Los archivos estaticos quedan en `dist/`.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## Reemplazar placeholders de imagenes
 
-## 👀 Want to learn more?
+Los componentes `ImagePlaceholder` marcan donde insertar capturas reales:
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+1. Tome screenshots de la app MediApp (dashboard, pacientes, citas, recetas).
+2. Guarde las imagenes en `public/images/`.
+3. Sustituya `<ImagePlaceholder ... />` por `<img src="/images/nombre.png" alt="..." />` en los componentes correspondientes.
+
+Archivos con placeholders:
+
+- `src/components/Hero.astro`
+- `src/components/Features.astro`
+- `src/components/HowItWorks.astro`
+- `src/components/Screenshots.astro`
+
+## Formulario de contacto
+
+El formulario en `CTA.astro` es visual. Conectelo a su backend, servicio de email o herramienta (Formspree, Netlify Forms, etc.) segun su despliegue.
+
+## Estructura
+
+```
+src/
+  components/   # Secciones de la landing
+  layouts/      # Layout base HTML
+  pages/        # Rutas (index.astro)
+  styles/       # Tailwind y estilos globales
+public/         # Assets estaticos (favicon, imagenes)
+```

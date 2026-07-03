@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --color-brand-50: #eff6ff;
+  --color-brand-100: #dbeafe;
+  --color-brand-200: #bfdbfe;
+  --color-brand-300: #93c5fd;
+  --color-brand-400: #60a5fa;
+  --color-brand-500: #3b82f6;
+  --color-brand-600: #2563eb;
+  --color-brand-700: #1d4ed8;
+  --color-brand-800: #1e40af;
+  --color-brand-900: #1e3a8a;
+  --color-teal-500: #14b8a6;
+  --color-teal-600: #0d9488;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-white text-slate-800 antialiased;
+}
+
+.gradient-hero {
+  background:
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(59, 130, 246, 0.12), transparent),
+    radial-gradient(ellipse 50% 40% at 90% 20%, rgba(20, 184, 166, 0.08), transparent),
+    linear-gradient(to bottom, #f8fafc, #ffffff);
+}
+
+.gradient-cta {
+  background: linear-gradient(135deg, #1d4ed8 0%, #0d9488 100%);
+}
+
+.image-placeholder {
+  @apply relative flex flex-col items-center justify-center overflow-hidden rounded-2xl border-2 border-dashed border-brand-200 bg-brand-50/60 text-brand-600;
+}
+
+.image-placeholder::before {
+  content: "";
+  @apply absolute inset-0 opacity-30;
+  background-image: radial-gradient(circle at 1px 1px, #93c5fd 1px, transparent 0);
+  background-size: 24px 24px;
+}

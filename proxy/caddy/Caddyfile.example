@@ -1,0 +1,7 @@
+mediappec.com {
+    reverse_proxy host.docker.internal:13080
+}
+
+www.mediappec.com {
+    redir https://mediappec.com{uri} permanent
+}

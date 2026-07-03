@@ -1,0 +1,32 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-slate-200 bg-slate-900 py-12 text-slate-400">
+  <div class="mx-auto max-w-6xl px-6">
+    <div class="flex flex-col items-center justify-between gap-8 md:flex-row">
+      <div class="flex items-center gap-2.5">
+        <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-600 text-sm font-bold text-white">M</span>
+        <div>
+          <p class="font-bold text-white">MediApp</p>
+          <p class="text-sm">Su consultorio organizado desde el celular</p>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap justify-center gap-6 text-sm">
+        <a href="#funciones" class="transition hover:text-white">Funciones</a>
+        <a href="#como-funciona" class="transition hover:text-white">Como funciona</a>
+        <a href="#beneficios" class="transition hover:text-white">Beneficios</a>
+        <a href="#faq" class="transition hover:text-white">FAQ</a>
+        <a href="#contacto" class="transition hover:text-white">Contacto</a>
+      </div>
+    </div>
+
+    <div class="mt-10 border-t border-slate-800 pt-8 text-center text-sm">
+      <p>&copy; {year} MediApp. Todos los derechos reservados.</p>
+      <p class="mt-2 text-slate-500">
+        Producto SaaS para consultorios medicos independientes.
+      </p>
+    </div>
+  </div>
+</footer>

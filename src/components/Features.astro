@@ -1,0 +1,74 @@
+---
+import ImagePlaceholder from './ImagePlaceholder.astro';
+
+const features = [
+  {
+    title: 'Agenda inteligente',
+    text: 'Panel con citas del dia, proxima cita y estados actualizables entre consultas.',
+    tag: 'Dia a dia',
+  },
+  {
+    title: 'Pacientes e historial',
+    text: 'Registro completo del consultorio con historial por paciente siempre a mano.',
+    tag: 'Pacientes',
+  },
+  {
+    title: 'Historias clinicas',
+    text: 'Documentacion clinica organizada y accesible desde cualquier dispositivo.',
+    tag: 'Clinica',
+  },
+  {
+    title: 'Recetas en PDF',
+    text: 'Genere recetas, descarguelas en PDF y reenvielas cuando lo necesite.',
+    tag: 'Recetas',
+  },
+  {
+    title: 'Disponibilidad',
+    text: 'Configure horarios y slots disponibles segun su rutina de consultorio.',
+    tag: 'Organizacion',
+  },
+  {
+    title: 'Perfil profesional',
+    text: 'Datos del consultorio y perfil medico centralizados con acceso seguro.',
+    tag: 'Acceso',
+  },
+];
+---
+
+<section id="funciones" class="py-20 md:py-28">
+  <div class="mx-auto max-w-6xl px-6">
+    <div class="grid items-end gap-10 lg:grid-cols-2">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-wide text-brand-600">Funciones</p>
+        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">
+          Todo lo que su consultorio necesita hoy
+        </h2>
+        <p class="mt-4 text-lg text-slate-600">
+          Como tener agenda, carpeta clinica y orden de recetas en el bolsillo, accesible desde
+          el navegador de su telefono.
+        </p>
+      </div>
+      <ImagePlaceholder
+        label="Captura: vista general de modulos"
+        hint="Screenshot del menu principal o dashboard completo"
+        aspect="wide"
+      />
+    </div>
+
+    <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        features.map(({ title, text, tag }) => (
+          <article class="group rounded-2xl border border-slate-200/80 p-6 transition hover:border-brand-200 hover:bg-brand-50/30">
+            <span class="inline-block rounded-md bg-brand-100 px-2.5 py-1 text-xs font-semibold text-brand-700">
+              {tag}
+            </span>
+            <h3 class="mt-4 text-lg font-semibold text-slate-900 group-hover:text-brand-700">
+              {title}
+            </h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600">{text}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
