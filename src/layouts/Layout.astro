@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css';
+import GoogleTagManager from '../components/GoogleTagManager.astro';
+import GoogleTagManagerNoscript from '../components/GoogleTagManagerNoscript.astro';
 
 interface Props {
   title?: string;
@@ -26,8 +28,10 @@ const {
       rel="stylesheet"
     />
     <title>{title}</title>
+    <GoogleTagManager />
   </head>
   <body class="font-sans">
+    <GoogleTagManagerNoscript />
     <slot />
   </body>
 </html>

@@ -4,6 +4,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        PUBLIC_GTM_ID: ${PUBLIC_GTM_ID:-}
     restart: unless-stopped
     ports:
       - "${LANDING_PORT:-127.0.0.1:13080}:80"

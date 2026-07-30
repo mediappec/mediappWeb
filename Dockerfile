@@ -7,6 +7,11 @@ COPY package.json package-lock.json ./
 RUN npm ci
 
 COPY . .
+
+# PUBLIC_* se embebe en el HTML en build time (sitio estático)
+ARG PUBLIC_GTM_ID=
+ENV PUBLIC_GTM_ID=$PUBLIC_GTM_ID
+
 RUN npm run build
 
 # Run: nginx sirve /dist (Caddy en el VPS termina TLS y hace reverse_proxy)

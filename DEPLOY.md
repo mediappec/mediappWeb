@@ -16,11 +16,14 @@ Internet → Caddy (443, Let's Encrypt) → host.docker.internal:13080 → nginx
 ```bash
 cd /opt/mediapp-landing
 cp .env.example .env
+# Edite .env: LANDING_PORT, LANDING_IMAGE, PUBLIC_GTM_ID (GTM-XXXXXXX)
 
 docker compose --env-file .env build
 docker compose --env-file .env up -d
 docker compose --env-file .env ps
 ```
+
+`PUBLIC_GTM_ID` se pasa como **build arg** y queda embebido en el HTML estático. Si cambia el ID, hay que **reconstruir** la imagen (`build --no-cache`).
 
 Comprobar en el servidor (sin Caddy):
 
@@ -61,7 +64,7 @@ docker compose exec caddy caddy reload --config /etc/caddy/Caddyfile
 ## 4) Publicar imagen en Docker Hub (opcional)
 
 ```bash
-docker build -t TU_USUARIO/mediapp-landing:latest .
+docker build --build-arg PUBLIC_GTM_ID=GTM-XXXXXXX -t TU_USUARIO/mediapp-landing:latest .
 docker push TU_USUARIO/mediapp-landing:latest
 ```
 

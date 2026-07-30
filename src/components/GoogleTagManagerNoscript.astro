@@ -1,0 +1,21 @@
+---
+interface Props {
+  id?: string;
+}
+
+const id = Astro.props.id ?? import.meta.env.PUBLIC_GTM_ID;
+---
+
+{
+  id && (
+    <noscript>
+      <iframe
+        src={`https://www.googletagmanager.com/ns.html?id=${id}`}
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"
+        title="Google Tag Manager"
+      ></iframe>
+    </noscript>
+  )
+}
