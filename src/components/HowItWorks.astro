@@ -7,36 +7,42 @@ const steps = [
     title: 'Inicie sesion',
     text: 'Acceda a su consultorio con usuario y contrasena seguros.',
     label: 'Captura: pantalla de login',
+    src: 'how-it-works-1.webp',
   },
   {
     num: '02',
     title: 'Revise su agenda',
     text: 'Vea las citas de hoy y la proxima consulta de un vistazo.',
     label: 'Captura: agenda del dia',
+    src: 'how-it-works-2.webp',
   },
   {
     num: '03',
     title: 'Abra el paciente',
     text: 'Consulte datos e historial antes de atender, en segundos.',
     label: 'Captura: ficha del paciente',
+    src: 'how-it-works-3.webp',
   },
   {
     num: '04',
     title: 'Gestione la cita',
     text: 'Cree citas o actualice el estado entre un paciente y otro.',
     label: 'Captura: detalle de cita',
+    src: 'how-it-works-4.webp',
   },
   {
     num: '05',
     title: 'Emita la receta',
     text: 'Genere PDF y reenvie la receta cuando corresponda.',
     label: 'Captura: receta en PDF',
+    src: 'how-it-works-5.webp',
   },
   {
     num: '06',
     title: 'Configure horarios',
     text: 'Ajuste disponibilidad y datos del consultorio cuando quiera.',
     label: 'Captura: disponibilidad',
+    src: 'how-it-works-6.webp',
   },
 ];
 ---
@@ -56,7 +62,7 @@ const steps = [
 
     <div class="mt-16 space-y-12">
       {
-        steps.map(({ num, title, text, label }, i) => (
+        steps.map(({ num, title, text, label, src }, i) => (
           <div
             class={`grid items-center gap-8 lg:grid-cols-2 lg:gap-16 ${i % 2 === 1 ? 'lg:[direction:rtl]' : ''}`}
           >
@@ -66,7 +72,7 @@ const steps = [
               <p class="mt-3 text-slate-600 leading-relaxed">{text}</p>
             </div>
             <div class={`${i % 2 === 1 ? 'lg:[direction:ltr]' : ''}`}>
-              <ImagePlaceholder label={label} hint="Inserte screenshot real del modulo" aspect="card" />
+              <ImagePlaceholder label={label} src={src} hint="Inserte screenshot real del modulo" aspect="card" />
             </div>
           </div>
         ))
