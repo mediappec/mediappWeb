@@ -6,7 +6,7 @@ La landing es un sitio **estatico** (Astro → `dist/`). El contenedor `landing`
 
 ```text
 Internet → Caddy (443) → host.docker.internal:13080 → nginx (landing)
-                                                      └─ /api/* → contact-api:3001 → SMTP PrivateEmail
+                                                      └─ /api/* → contact-api:13081 → SMTP PrivateEmail
 ```
 
 - **Dominio produccion:** `https://mediappec.com`
@@ -35,7 +35,7 @@ Comprobar en el servidor (sin Caddy):
 ```bash
 curl -I http://127.0.0.1:13080/
 curl -s http://127.0.0.1:13080/api/contact -X OPTIONS -i | head
-docker compose --env-file .env exec contact-api wget -qO- http://127.0.0.1:3001/health
+docker compose --env-file .env exec contact-api wget -qO- http://127.0.0.1:13081/health
 ```
 
 ## 2) Configurar Caddy (proxy existente)

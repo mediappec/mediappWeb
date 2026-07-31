@@ -28,7 +28,7 @@ function loadEnvFile(path) {
 loadEnvFile(resolve(import.meta.dirname, '../.env'));
 loadEnvFile(resolve(import.meta.dirname, '.env'));
 
-const PORT = Number(process.env.PORT || 3001);
+const PORT = Number(process.env.PORT || 13081);
 const SMTP_HOST = process.env.SMTP_HOST || 'mail.privateemail.com';
 const SMTP_PORT = Number(process.env.SMTP_PORT || 465);
 const SMTP_SECURE = (process.env.SMTP_SECURE ?? 'true') === 'true';
@@ -171,6 +171,6 @@ function escapeHtml(str) {
     .replaceAll('"', '&quot;');
 }
 
-serve({ fetch: app.fetch, port: PORT }, (info) => {
-  console.log(`contact-api listening on http://127.0.0.1:${info.port}`);
+serve({ fetch: app.fetch, port: PORT, hostname: '0.0.0.0' }, (info) => {
+  console.log(`contact-api listening on 0.0.0.0:${info.port}`);
 });

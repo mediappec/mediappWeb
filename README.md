@@ -20,8 +20,8 @@ Guia completa: [`DEPLOY.md`](./DEPLOY.md). Bloque Caddy de ejemplo: [`proxy/cadd
 ```bash
 npm install
 npm --prefix server install
-npm run dev:api   # terminal 1 — API SMTP en :3001
-npm run dev       # terminal 2 — Astro en :4321 (proxy /api → :3001)
+npm run dev:api   # terminal 1 — API SMTP en :13081
+npm run dev       # terminal 2 — Astro en :4321 (proxy /api → :13081)
 ```
 
 Abra [http://localhost:4321](http://localhost:4321) en el navegador.
