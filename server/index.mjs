@@ -137,9 +137,9 @@ app.post('/api/contact', async (c) => {
       from: CONTACT_FROM,
       to: CONTACT_TO,
       replyTo: email,
-      subject: `Solicitud de piloto MediApp — ${nombre}`,
+      subject: `Solicitud Plan Fundador MediApp — ${nombre}`,
       text: [
-        'Nueva solicitud de piloto desde mediappec.com',
+        'Nueva solicitud de Plan Fundador desde mediappec.com',
         '',
         `Nombre: ${nombre}`,
         `Correo: ${email}`,
@@ -148,7 +148,7 @@ app.post('/api/contact', async (c) => {
         `IP: ${ip}`,
       ].join('\n'),
       html: `
-        <h2>Nueva solicitud de piloto</h2>
+        <h2>Nueva solicitud de Plan Fundador</h2>
         <p><strong>Nombre:</strong> ${escapeHtml(nombre)}</p>
         <p><strong>Correo:</strong> ${escapeHtml(email)}</p>
         <p><strong>Telefono / WhatsApp:</strong> ${escapeHtml(telefono)}</p>

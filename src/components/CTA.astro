@@ -1,11 +1,11 @@
 ---
 const planFeatures = [
-  'Agenda y gestion de citas',
-  'Pacientes e historial clinico',
-  'Historias medicas y recetas PDF',
-  'Disponibilidad y perfil del consultorio',
-  'Acceso seguro desde cualquier dispositivo',
-  'Acompanamiento durante el piloto',
+  'App completa: citas, pacientes, historias y recetas PDF',
+  'Subdominio propio para su consultorio',
+  'Setup y capacitacion de 30–45 min',
+  'Uso desde el celular, sin instalacion compleja',
+  'Soporte prioritario durante los 3 meses',
+  'A cambio: uso real, 2 sesiones de feedback y testimonio',
 ];
 ---
 
@@ -14,13 +14,13 @@ const planFeatures = [
     <div class="gradient-cta overflow-hidden rounded-3xl shadow-2xl shadow-brand-900/20">
       <div class="grid gap-10 p-8 md:p-12 lg:grid-cols-2 lg:items-center lg:p-16">
         <div class="text-white">
-          <p class="text-sm font-semibold uppercase tracking-wide text-brand-100">Empiece hoy</p>
+          <p class="text-sm font-semibold uppercase tracking-wide text-brand-100">Lanzamiento</p>
           <h2 class="mt-3 text-3xl font-bold md:text-4xl">
-            Piloto de 2 semanas para su consultorio
+            Plan Fundador
           </h2>
           <p class="mt-4 text-lg text-brand-100 leading-relaxed">
-            Pruebe MediApp en su rutina real. Al final recogemos lo que le ahorro tiempo y las
-            mejoras que pide su dia a dia.
+            Tres meses sin mensualidad. Solo paga <span class="font-semibold text-white">$49 USD</span> de
+            instalacion y usa MediApp en su consultorio real mientras nos ayuda a mejorarla.
           </p>
           <ul class="mt-8 space-y-3">
             {
@@ -34,12 +34,21 @@ const planFeatures = [
               ))
             }
           </ul>
+          <p class="mt-6 text-sm text-brand-100/90">
+            Cupos limitados (15–20 fundadores). Al dia 90 pasa al Plan Consultorio desde $19/mes
+            (recomendado: semestral).
+          </p>
         </div>
 
         <div class="rounded-2xl bg-white p-8 shadow-xl">
-          <h3 class="text-xl font-bold text-slate-900">Solicite su acceso</h3>
+          <div class="flex items-baseline gap-2">
+            <span class="text-4xl font-bold text-slate-900">$49</span>
+            <span class="text-sm text-slate-500">USD · instalacion unica</span>
+          </div>
+          <p class="mt-1 text-sm font-medium text-teal-700">3 meses sin suscripcion</p>
+          <h3 class="mt-5 text-xl font-bold text-slate-900">Solicite su cupo</h3>
           <p class="mt-2 text-sm text-slate-600">
-            Complete sus datos y nos pondremos en contacto para activar su piloto.
+            Complete sus datos y nos pondremos en contacto para activar su Plan Fundador.
           </p>
 
           <form id="contact-form" class="mt-6 space-y-4" action="/api/contact" method="post" novalidate>
@@ -79,7 +88,7 @@ const planFeatures = [
                 name="telefono"
                 required
                 maxlength="50"
-                placeholder="+52 55 1234 5678"
+                placeholder="+593 99 123 4567"
                 class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-brand-400 focus:ring-2 focus:ring-brand-100"
               />
             </div>
@@ -88,11 +97,11 @@ const planFeatures = [
               id="contact-submit"
               class="w-full rounded-xl bg-brand-600 py-3.5 text-sm font-semibold text-white transition hover:bg-brand-700 disabled:cursor-not-allowed disabled:opacity-60"
             >
-              Solicitar piloto gratuito
+              Solicitar Plan Fundador
             </button>
             <p id="contact-feedback" class="hidden text-center text-sm" role="status" aria-live="polite"></p>
             <p class="text-center text-xs text-slate-400">
-              Sin compromiso. Respuesta en menos de 24 horas.
+              Cupos limitados. Respuesta en menos de 24 horas.
             </p>
           </form>
         </div>
@@ -101,16 +110,16 @@ const planFeatures = [
 
     <div class="mt-12 grid gap-6 text-center sm:grid-cols-3">
       <div class="rounded-2xl border border-slate-200 p-6">
-        <p class="text-3xl font-bold text-brand-600">2 sem</p>
-        <p class="mt-1 text-sm text-slate-600">Duracion del piloto</p>
+        <p class="text-3xl font-bold text-brand-600">$49</p>
+        <p class="mt-1 text-sm text-slate-600">Instalacion unica</p>
       </div>
       <div class="rounded-2xl border border-slate-200 p-6">
-        <p class="text-3xl font-bold text-brand-600">100%</p>
-        <p class="mt-1 text-sm text-slate-600">Enfocado en movil</p>
+        <p class="text-3xl font-bold text-brand-600">3 meses</p>
+        <p class="mt-1 text-sm text-slate-600">Sin mensualidad</p>
       </div>
       <div class="rounded-2xl border border-slate-200 p-6">
-        <p class="text-3xl font-bold text-brand-600">1</p>
-        <p class="mt-1 text-sm text-slate-600">Consultorio por cuenta</p>
+        <p class="text-3xl font-bold text-brand-600">15–20</p>
+        <p class="mt-1 text-sm text-slate-600">Cupos de fundadores</p>
       </div>
     </div>
   </div>
@@ -120,7 +129,7 @@ const planFeatures = [
   const form = document.getElementById('contact-form');
   const submitBtn = document.getElementById('contact-submit');
   const feedback = document.getElementById('contact-feedback');
-  const defaultLabel = submitBtn?.textContent ?? 'Solicitar piloto gratuito';
+  const defaultLabel = submitBtn?.textContent ?? 'Solicitar Plan Fundador';
 
   function showFeedback(message, type) {
     if (!feedback) return;
