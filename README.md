@@ -19,10 +19,14 @@ Guia completa: [`DEPLOY.md`](./DEPLOY.md). Bloque Caddy de ejemplo: [`proxy/cadd
 
 ```bash
 npm install
-npm run dev
+npm --prefix server install
+npm run dev:api   # terminal 1 — API SMTP en :3001
+npm run dev       # terminal 2 — Astro en :4321 (proxy /api → :3001)
 ```
 
 Abra [http://localhost:4321](http://localhost:4321) en el navegador.
+
+Configure `SMTP_*` en un `.env` en la raiz o exporte las variables antes de `dev:api` (vea `.env.example`).
 
 Con Laragon, puede servir el build estatico desde `dist/` o usar el servidor de desarrollo.
 
@@ -52,7 +56,7 @@ Archivos con placeholders:
 
 ## Formulario de contacto
 
-El formulario en `CTA.astro` es visual. Conectelo a su backend, servicio de email o herramienta (Formspree, Netlify Forms, etc.) segun su despliegue.
+El formulario en `CTA.astro` envia `POST /api/contact` al servicio `contact-api` (nodemailer + PrivateEmail). En Docker, nginx hace proxy de `/api/` hacia ese servicio. Configure `SMTP_PASS` en `.env` antes de desplegar.
 
 ## Estructura
 

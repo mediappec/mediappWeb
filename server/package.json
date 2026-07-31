@@ -1,0 +1,18 @@
+{
+  "name": "mediapp-landing-contact-api",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "start": "node index.mjs",
+    "dev": "node --watch index.mjs"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.14.4",
+    "hono": "^4.8.4",
+    "nodemailer": "^7.0.5"
+  }
+}

@@ -42,13 +42,19 @@ const planFeatures = [
             Complete sus datos y nos pondremos en contacto para activar su piloto.
           </p>
 
-          <form class="mt-6 space-y-4" action="#" method="post">
+          <form id="contact-form" class="mt-6 space-y-4" action="/api/contact" method="post" novalidate>
+            <div class="absolute -left-[9999px] h-0 w-0 overflow-hidden" aria-hidden="true">
+              <label for="website">Website</label>
+              <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+            </div>
             <div>
               <label for="nombre" class="mb-1.5 block text-sm font-medium text-slate-700">Nombre completo</label>
               <input
                 type="text"
                 id="nombre"
                 name="nombre"
+                required
+                maxlength="200"
                 placeholder="Dr. Juan Perez"
                 class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-brand-400 focus:ring-2 focus:ring-brand-100"
               />
@@ -59,6 +65,8 @@ const planFeatures = [
                 type="email"
                 id="email"
                 name="email"
+                required
+                maxlength="254"
                 placeholder="doctor@consultorio.com"
                 class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-brand-400 focus:ring-2 focus:ring-brand-100"
               />
@@ -69,16 +77,20 @@ const planFeatures = [
                 type="tel"
                 id="telefono"
                 name="telefono"
+                required
+                maxlength="50"
                 placeholder="+52 55 1234 5678"
                 class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none transition focus:border-brand-400 focus:ring-2 focus:ring-brand-100"
               />
             </div>
             <button
               type="submit"
-              class="w-full rounded-xl bg-brand-600 py-3.5 text-sm font-semibold text-white transition hover:bg-brand-700"
+              id="contact-submit"
+              class="w-full rounded-xl bg-brand-600 py-3.5 text-sm font-semibold text-white transition hover:bg-brand-700 disabled:cursor-not-allowed disabled:opacity-60"
             >
               Solicitar piloto gratuito
             </button>
+            <p id="contact-feedback" class="hidden text-center text-sm" role="status" aria-live="polite"></p>
             <p class="text-center text-xs text-slate-400">
               Sin compromiso. Respuesta en menos de 24 horas.
             </p>
@@ -103,3 +115,62 @@ const planFeatures = [
     </div>
   </div>
 </section>
+
+<script>
+  const form = document.getElementById('contact-form');
+  const submitBtn = document.getElementById('contact-submit');
+  const feedback = document.getElementById('contact-feedback');
+  const defaultLabel = submitBtn?.textContent ?? 'Solicitar piloto gratuito';
+
+  function showFeedback(message, type) {
+    if (!feedback) return;
+    feedback.textContent = message;
+    feedback.classList.remove('hidden', 'text-emerald-600', 'text-red-600');
+    feedback.classList.add(type === 'success' ? 'text-emerald-600' : 'text-red-600');
+  }
+
+  form?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (!form || !submitBtn) return;
+
+    const data = new FormData(form);
+    const payload = {
+      nombre: String(data.get('nombre') || '').trim(),
+      email: String(data.get('email') || '').trim(),
+      telefono: String(data.get('telefono') || '').trim(),
+      website: String(data.get('website') || '').trim(),
+    };
+
+    if (!payload.nombre || !payload.email || !payload.telefono) {
+      showFeedback('Complete todos los campos.', 'error');
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Enviando…';
+    feedback?.classList.add('hidden');
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      const result = await res.json().catch(() => ({ ok: false }));
+
+      if (!res.ok || !result.ok) {
+        showFeedback(result.error || 'No se pudo enviar. Intente mas tarde.', 'error');
+        return;
+      }
+
+      form.reset();
+      showFeedback('Recibimos su solicitud. Nos contactaremos pronto.', 'success');
+    } catch {
+      showFeedback('Error de conexion. Intente mas tarde.', 'error');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = defaultLabel;
+    }
+  });
+</script>

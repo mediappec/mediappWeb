@@ -9,8 +9,34 @@ services:
     restart: unless-stopped
     ports:
       - "${LANDING_PORT:-127.0.0.1:13080}:80"
+    depends_on:
+      - contact-api
     healthcheck:
       test: ["CMD", "wget", "-qO-", "http://127.0.0.1/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  contact-api:
+    image: ${CONTACT_API_IMAGE:-mediapp-landing-contact-api:latest}
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      PORT: "13081"
+      SMTP_HOST: ${SMTP_HOST:-mail.privateemail.com}
+      SMTP_PORT: ${SMTP_PORT:-465}
+      SMTP_SECURE: ${SMTP_SECURE:-true}
+      SMTP_USER: ${SMTP_USER:-contact@mediappec.com}
+      SMTP_PASS: ${SMTP_PASS:-}
+      CONTACT_TO: ${CONTACT_TO:-contact@mediappec.com}
+      CONTACT_FROM: ${CONTACT_FROM:-contact@mediappec.com}
+    expose:
+      - "13081"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:13081/health"]
       interval: 30s
       timeout: 5s
       retries: 3
